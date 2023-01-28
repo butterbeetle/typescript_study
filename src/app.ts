@@ -1,17 +1,17 @@
-let appId = "abc";
-const button = document.querySelector("button");
+// Code goes here!
+const userName = "Max";
+// userName = "MaxMax";
+let age = 30;
+age = 29;
 
-function add(n1: number, n2: number) {
-  if (n1 + n2 > 0) {
-    return n1 + n2;
-  }
+function add(a: number, b: number) {
+  let result;
+  result = a + b;
+  return result;
 }
 
-function clickHandler(message: string) {
-  // let userName = "Max";
-  console.log("Clicked! " + message);
-}
-// a comment
-if (button) {
-  button?.addEventListener("click", clickHandler.bind(null, "You're welcome!"));
-}
+// if(age > 20 ){
+//   let isOld = true;
+// }
+
+// console.log(isOld)
