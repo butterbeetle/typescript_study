@@ -47,6 +47,13 @@ const fetchedUserData = {
 
 console.log(fetchedUserData?.job?.title);
 
+const userInput = undefined;
+
+// userInput = undefined, null 이면 DEFAULT 단순히 "" 처럼 비어있으면 비어있는 값으로 설정해줌
+const storedData = userInput ?? "DEFAULT";
+
+console.log(storedData);
+
 // type UnknownEmployee = Employee | Admin;
 
 // function printEmployeeInformation(emp: UnknownEmployee) {
