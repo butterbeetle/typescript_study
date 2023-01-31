@@ -103,3 +103,17 @@ function moveAnimal(animal: Animal) {
 }
 
 moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+// 밑 두 줄은 같은 형변환임 맘에드는걸로 일관성을 유지하며 사용할 것
+// const userInputElemnt = <HTMLInputElement>document.getElementById("user-input")!;
+// const userInputElemnt = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement;
+// userInputElemnt.value = "Hi there!"
+
+// ! 사용 대안
+const userInputElemnt = document.getElementById("user-input");
+
+if (userInputElemnt) {
+  (userInputElemnt as HTMLInputElement).value = "Hi there!";
+}
