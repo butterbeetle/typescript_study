@@ -24,6 +24,11 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
+// 함수 오버로드
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
 function add(a: Combinable, b: Combinable) {
   // typeof를 사용하는 타입가드
   if (typeof a === "string" || typeof b === "string") {
@@ -32,98 +37,101 @@ function add(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-type UnknownEmployee = Employee | Admin;
+const result = add("Max", "Schwarz");
+result.split(" ");
 
-function printEmployeeInformation(emp: UnknownEmployee) {
-  console.log("Name: " + emp.name);
-  // 또 다른 타입가드
-  if ("privileges" in emp) {
-    console.log("Privileges: " + emp.privileges);
-  }
-  if ("startDate" in emp) {
-    console.log("Start Date: " + emp.startDate);
-  }
-}
+// type UnknownEmployee = Employee | Admin;
 
-printEmployeeInformation({ name: "Manu", startDate: new Date() });
+// function printEmployeeInformation(emp: UnknownEmployee) {
+//   console.log("Name: " + emp.name);
+//   // 또 다른 타입가드
+//   if ("privileges" in emp) {
+//     console.log("Privileges: " + emp.privileges);
+//   }
+//   if ("startDate" in emp) {
+//     console.log("Start Date: " + emp.startDate);
+//   }
+// }
 
-class Car {
-  drive() {
-    console.log("Driving...");
-  }
-}
+// printEmployeeInformation({ name: "Manu", startDate: new Date() });
 
-class Truck {
-  drive() {
-    console.log("Driving a Truck...");
-  }
-  loadCargo(amount: number) {
-    console.log("Loading cargo..." + amount);
-  }
-}
+// class Car {
+//   drive() {
+//     console.log("Driving...");
+//   }
+// }
 
-type Vehicle = Car | Truck;
+// class Truck {
+//   drive() {
+//     console.log("Driving a Truck...");
+//   }
+//   loadCargo(amount: number) {
+//     console.log("Loading cargo..." + amount);
+//   }
+// }
 
-const v1 = new Car();
-const v2 = new Truck();
+// type Vehicle = Car | Truck;
 
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  //instanceof 타입가드
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(1000);
-  }
-}
+// const v1 = new Car();
+// const v2 = new Truck();
 
-useVehicle(v1);
-useVehicle(v2);
+// function useVehicle(vehicle: Vehicle) {
+//   vehicle.drive();
+//   //instanceof 타입가드
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(1000);
+//   }
+// }
 
-interface Bird {
-  type: "bird";
-  flyingSpeed: number;
-}
-interface Horse {
-  type: "horse";
-  runningSpeed: number;
-}
+// useVehicle(v1);
+// useVehicle(v2);
 
-type Animal = Bird | Horse;
+// interface Bird {
+//   type: "bird";
+//   flyingSpeed: number;
+// }
+// interface Horse {
+//   type: "horse";
+//   runningSpeed: number;
+// }
 
-function moveAnimal(animal: Animal) {
-  let speed;
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-  }
-  console.log("Moving at speed: " + speed);
-}
+// type Animal = Bird | Horse;
 
-moveAnimal({ type: "bird", flyingSpeed: 10 });
+// function moveAnimal(animal: Animal) {
+//   let speed;
+//   switch (animal.type) {
+//     case "bird":
+//       speed = animal.flyingSpeed;
+//       break;
+//     case "horse":
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   console.log("Moving at speed: " + speed);
+// }
 
-// 밑 두 줄은 같은 형변환임 맘에드는걸로 일관성을 유지하며 사용할 것
-// const userInputElemnt = <HTMLInputElement>document.getElementById("user-input")!;
-// const userInputElemnt = document.getElementById(
-//   "user-input"
-// )! as HTMLInputElement;
-// userInputElemnt.value = "Hi there!"
+// moveAnimal({ type: "bird", flyingSpeed: 10 });
 
-// ! 사용 대안
-const userInputElemnt = document.getElementById("user-input");
+// // 밑 두 줄은 같은 형변환임 맘에드는걸로 일관성을 유지하며 사용할 것
+// // const userInputElemnt = <HTMLInputElement>document.getElementById("user-input")!;
+// // const userInputElemnt = document.getElementById(
+// //   "user-input"
+// // )! as HTMLInputElement;
+// // userInputElemnt.value = "Hi there!"
 
-if (userInputElemnt) {
-  (userInputElemnt as HTMLInputElement).value = "Hi there!";
-}
+// // ! 사용 대안
+// const userInputElemnt = document.getElementById("user-input");
 
-// { email: "Not a valid email", username: "Must start with a charcter!"}
-interface ErrorContainer {
-  [prop: string]: string;
-}
+// if (userInputElemnt) {
+//   (userInputElemnt as HTMLInputElement).value = "Hi there!";
+// }
 
-const errorBag: ErrorContainer = {
-  email: "Not a valid email",
-  username: "Must start with a capital charater!",
-};
+// // { email: "Not a valid email", username: "Must start with a charcter!"}
+// interface ErrorContainer {
+//   [prop: string]: string;
+// }
+
+// const errorBag: ErrorContainer = {
+//   email: "Not a valid email",
+//   username: "Must start with a capital charater!",
+// };
