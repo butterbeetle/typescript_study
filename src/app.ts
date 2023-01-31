@@ -1,1 +1,1 @@
-console.log("Section07");
+console.log("Section07 제네릭");
